@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class='oldCLassName' id='oldCLassName'>Click to make get request</div>
+    <button onclick="changeClass()">Make post request</button>
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var ajax1 = $.ajax({
+            dataType: "json",
+            type: 'POST',
+            url: "url",
+            async: true,
+            success: function (result) { }
+        });
+
+        var ajax2 = $.ajax({
+            dataType: "json",
+            type: 'POST',
+            url: "url",
+            async: true,
+            success: function (result) { }
+        });
+
+        var ajax3 = $.ajax({
+            dataType: "json",
+            type: 'POST',
+            url: "url",
+            async: true,
+            success: function (result) { }
+        });
+
+        $.when(ajax1, ajax2, ajax3).done(function (a1, a2, a3) {
+
+            var data = a1[0] + a2[0] + a3[0]; 
+            if (test(data)) {
+                console.log("Final result" + data)
+            }
+        });
+    </script>
+</body>
+
+</html>

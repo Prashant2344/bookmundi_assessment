@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <label class="checkbox" for="Checkbox1">
+        <input value="10" type="checkbox" class="sum"> $10
+    </label>
+    <label class="checkbox">
+        <input value="20" type="checkbox" class="sum"> $20
+    </label>
+    <label class="checkbox">
+        <input value="30" type="checkbox" class="sum"> $30
+    </label>
+
+
+    <br />
+    <br />
+
+    <select id="select" name="select">
+        <option class="sum"></option>
+        <option value="0" class="sum" selected >Select an option</option>
+        <option value="1" class="sum">$10</option>
+        <option value="2" class="sum">$20</option>
+        <option value="5" class="sum">$30</option>
+    </select>
+
+    <br />
+    <br /> Total Amount: $<span id="amount-total">0</span>
+
+    <script>
+        var checkboxes = document.querySelectorAll('.sum')
+        var select = document.querySelector('#select')
+        var total = document.querySelector('#amount-total')
+        var checkboxesTotal = 0
+        var selectTotal = 0
+
+        checkboxes.forEach(function (input) {
+            input.addEventListener('change', onCheckboxSelect)
+        })
+
+        select.addEventListener('change', onSelectChange)
+
+        function onCheckboxSelect(e) {
+            var sign = e.target.checked ? 1 : -1
+            checkboxesTotal += sign * parseInt(e.target.value, 10)
+            renderTotal()
+        }
+
+        function onSelectChange(e) {
+            var value = parseInt(e.target.value, 10)
+            if (!isNaN(value)) {
+                selectTotal = value
+                renderTotal()
+            }
+        }
+
+        function renderTotal() {
+            total.innerHTML = checkboxesTotal + selectTotal
+        }
+    </script>
+</body>
+
+</html>

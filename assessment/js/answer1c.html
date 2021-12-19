@@ -1,0 +1,24 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <h2>This is dom one</h2>
+    <p>This is dom two</p>
+    <div id="div1">
+    </div>
+
+    <script>
+        const para = document.createElement("p");
+        const node = document.createTextNode("This is injected dom.");
+        para.appendChild(node);
+        const element = document.getElementById("div1");
+        element.appendChild(para);
+    </script>
+
+</body>
+
+</html>
